@@ -1,0 +1,6 @@
+// without options  ==> look for options
+{
+    // "plugins": [
+    //     "transform-remove-console"
+    // ]
+}
