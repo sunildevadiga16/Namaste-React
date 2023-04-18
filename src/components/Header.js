@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Title = () => {
   return <p>Gud Fooood</p>
 }
@@ -7,11 +9,11 @@ export const Header = () => {
     <div className="navbar">
       <h1 className="logo"><Title /></h1>
       <ul className="menu">
-        <li>Home</li>
-        <li>About Us</li>
-        <li>Contact Us</li>
-        <li>Cart</li>
-        
+        <Link to="/"><li>Home</li></Link>
+        <Link to="/about"><li>About Us</li></Link>
+        <Link to="/contactUs"><li>Contact Us</li></Link>
+        <Link to="/cart"><li>Cart</li></Link>
+
       </ul>
     </div>
   );
