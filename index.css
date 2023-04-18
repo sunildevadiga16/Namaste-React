@@ -1,35 +1,92 @@
-.header {
-    display: flex;
-    justify-content: space-between ;
-    margin: 10px;
-    border: 1px solid black;
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
+/* --------------------------------- GENERAL -------------------------------- */
+* :not(h1, h2, h3, h4, h5, h6) {
+    margin: 0;
+    padding: 0;
 }
 
-.nav-items > ul{
-    list-style-type: none;
-    display: flex;
-}
-
-.nav-items > ul > li {
-    padding: 10px;
-}
-
-.logo {
-    width: 100px;
-}
-
-.card{
-    width: 200px;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
-}
-
-.card > img {
+img {
     width: 100%;
+    margin: auto;
 }
 
-.restaurant-list {
+.container {
+    padding: 50px 20px;
+    background-color: rgb(247, 231, 234);
+}
+
+/* --------------------------------- NAVBAR --------------------------------- */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: white;
+}
+
+.navbar img {
+    margin: unset;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    list-style-type: none;
+    padding: 0 20px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.navbar ul li:hover {
+    color: rgb(144, 0, 0);
+}
+
+.navbar img {
+    width: 50px;
+}
+
+/* -------------------------------- FOOD CARD ------------------------------- */
+.container.card-parent {
     display: flex;
     flex-wrap: wrap;
+    gap: 30px;
+    margin: 0 10%;
+    justify-content: space-between;
+}
+.card:hover{
+    box-shadow: 0 0 10px 0 rgba(165, 0, 160, 0.3);
+}
+
+.card {
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all .3s;
+}
+
+.card img {
+    border-radius: 20px 20px 0 0;
+
+}
+
+.card .content {
+    padding: 20px;
+}
+
+.card .rating {
+    background: green;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+.body {
+    background-color: lightpink;
 }
