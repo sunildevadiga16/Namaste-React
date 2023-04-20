@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Title = () => {
   return <p>Gud Fooood</p>
@@ -9,6 +10,9 @@ const Title = () => {
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="navbar">
@@ -20,6 +24,9 @@ export const Header = () => {
         <Link to="/cart"><li>Cart</li></Link>
         <Link to="/instamart">
           <li>Instamart</li>
+        </Link>
+        <Link to="/cart">
+          <li className="px-2">Cart- {cartItems.length} items</li>
         </Link>
 
       </ul>

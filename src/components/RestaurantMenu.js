@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from "../config";
 import useRestaurant from "../utils/useRestaurant";
 import Shimmer from "./Shimmer";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
     const params = useParams();
@@ -21,12 +23,18 @@ const RestaurantMenu = () => {
 
     const restaurant = useRestaurant(params.id);
     console.log("restaurant ", restaurant);
-    
+
+    const dispatch = useDispatch();
+
+    const addFoodItem = (item) => {
+        dispatch(addItem(item));
+    };
+
 
     return !restaurant ? (<Shimmer />) : (
         <div className="container">
             <img className="detail_mg" src={IMG_CDN_URL + restaurant?.cards[0]?.card?.card?.info.cloudinaryImageId} alt="restraunt" height={200} />
-            <h1>Restaurant id: {restaurant?.cards[0]?.card?.card?.info.name}</h1>
+            <h1>Restaurant : {restaurant?.cards[0]?.card?.card?.info.name}</h1>
             <p>Area: {restaurant?.cards[0]?.card?.card?.info?.areaName}</p>
             <p>City: {restaurant?.cards[0]?.card?.card?.info?.city}</p>
             <p>Average Rating: {restaurant?.cards[0]?.card?.card?.info?.avgRating}</p>
@@ -38,9 +46,25 @@ const RestaurantMenu = () => {
                     <li key={item.id}>{item.name}</li>
                 })
             }</p> */}
-        </div>
+{/* cards[0].card.card.info.cuisines */}
+            <div className="p-5">
+                <h1>Menu</h1>
+                <ul>
+                    {Object.values(restaurant?.cards[0]?.card?.card?.info?.labels).map((item) => (
+                        < li key={item.title} >
+                            {item.title} - {" "}
+                            < button className="p-1 bg-green-50" onClick={() => addFoodItem(item)}>
+                                Add
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div >
+
+
+        </div >
 
     )
 }
 
-export default RestaurantMenu
+export default RestaurantMenu;
