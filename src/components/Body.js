@@ -3,13 +3,15 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
-function filterFn(searchTxt, filteredRestaurants) {
-    const filterData = filteredRestaurants.filter((restaurant) =>
-        restaurant?.data?.name?.toLowerCase()?.includes(searchTxt.toLowerCase())
-    );
-    return filterData;
-};
+// function filterFn(searchTxt, filteredRestaurants) {
+//     const filterData = filteredRestaurants.filter((restaurant) =>
+//         restaurant?.data?.name?.toLowerCase()?.includes(searchTxt.toLowerCase())
+//     );
+//     return filterData;
+// };
 
 const Body = () => {
     const [searchTxt, setSearchTxt] = useState("");

@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from "../config";
+import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
     const urlParam = useParams();
     const [restrauntDetails, setRestrauntDetails] = useState({});
 
-    useEffect(() => {
-        getRestrauntMenuDeatiails();
-    }, []);
+    // useEffect(() => {
+    //     getRestrauntMenuDeatiails();
+    // }, []);
 
-    async function getRestrauntMenuDeatiails() {
-        const res = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.0168445&lng=76.9558321&restaurantId="+urlParam.id);
-        const menuDetails = await res.json();
-        console.log("menuDetails.data ", menuDetails?.data?.cards[0]?.card?.card?.info);
-        setRestrauntDetails(menuDetails?.data?.cards[0]?.card?.card?.info);
-    }
+    // async function getRestrauntMenuDeatiails() {
+    //     const res = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.0168445&lng=76.9558321&restaurantId="+urlParam.id);
+    //     const menuDetails = await res.json();
+    //     console.log("menuDetails.data ", menuDetails?.data?.cards[0]?.card?.card?.info);
+    //     setRestrauntDetails(menuDetails?.data?.cards[0]?.card?.card?.info);
+    // }
+
+    const restaurant = useRestaurant(urlParam.id);
+
     return !restrauntDetails ? (<Shimmer />) : (
         <div className="container">
             <img className="detail_mg" src={IMG_CDN_URL + restrauntDetails?.cloudinaryImageId} alt="restraunt" height={200} />
