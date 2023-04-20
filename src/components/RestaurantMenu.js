@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from "../config";
 import useRestaurant from "../utils/useRestaurant";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
-    const urlParam = useParams();
-    const [restrauntDetails, setRestrauntDetails] = useState({});
+    const params = useParams();
+    // const [restaurant, setRestrauntDetails] = useState({});
 
     // useEffect(() => {
     //     getRestrauntMenuDeatiails();
@@ -18,20 +19,22 @@ const RestaurantMenu = () => {
     //     setRestrauntDetails(menuDetails?.data?.cards[0]?.card?.card?.info);
     // }
 
-    const restaurant = useRestaurant(urlParam.id);
+    const restaurant = useRestaurant(params.id);
+    console.log("restaurant ", restaurant);
+    
 
-    return !restrauntDetails ? (<Shimmer />) : (
+    return !restaurant ? (<Shimmer />) : (
         <div className="container">
-            <img className="detail_mg" src={IMG_CDN_URL + restrauntDetails?.cloudinaryImageId} alt="restraunt" height={200} />
-            <h1>Restaurant id: {restrauntDetails.name}</h1> 
-            <p>Area: {restrauntDetails.areaName}</p>
-            <p>City: {restrauntDetails.city}</p>
-            <p>Average Rating: {restrauntDetails.avgRating}</p>
+            <img className="detail_mg" src={IMG_CDN_URL + restaurant?.cards[0]?.card?.card?.info.cloudinaryImageId} alt="restraunt" height={200} />
+            <h1>Restaurant id: {restaurant?.cards[0]?.card?.card?.info.name}</h1>
+            <p>Area: {restaurant?.cards[0]?.card?.card?.info?.areaName}</p>
+            <p>City: {restaurant?.cards[0]?.card?.card?.info?.city}</p>
+            <p>Average Rating: {restaurant?.cards[0]?.card?.card?.info?.avgRating}</p>
 
-            {/* <h4>Other Menu from {restrauntDetails.name}</h4> */}
+            {/* <h4>Other Menu from {restaurant.name}</h4> */}
             {/* This will Iterate a list of objects */}
             {/* <p>{
-                Object.values(restrauntDetails.menu.items).map((item) => {
+                Object.values(restaurant.menu.items).map((item) => {
                     <li key={item.id}>{item.name}</li>
                 })
             }</p> */}
