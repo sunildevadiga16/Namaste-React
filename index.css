@@ -16,6 +16,7 @@ img {
 
 .detail_mg {
     width: 25%;
+    height: 35%;
     margin: auto;
 }
 
@@ -106,5 +107,5 @@ img {
 }
 
 .body {
-    background-color: lightpink;
+    background-color: rgb(236, 225, 225);
 }

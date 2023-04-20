@@ -9,6 +9,7 @@ import ContactUs from "./components/ContactUs";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Profile from "./components/Profile";
 
 const AppLayout = () => {
     return (
@@ -19,7 +20,6 @@ const AppLayout = () => {
         </>
     );
 };
-
 
 const appRouter = createBrowserRouter([
     {
@@ -33,7 +33,13 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/about",
-                element: <About />
+                element: <About />,
+                children: [
+                    {
+                        path: "profile",  // dont use "/" for nested routes
+                        element: <Profile />,
+                    }
+                ]
             },
             {
                 path: "/contactUs",
@@ -51,6 +57,5 @@ const appRouter = createBrowserRouter([
     }
 ]);
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />)
+root.render(<RouterProvider router={appRouter} />);
