@@ -1,7 +1,7 @@
 const Shimmer = () => {
     return (
         <>
-            <div className="container card-parent">
+            <div className="container card-parent" data-testid="shimmer">
 
                 {Array(8)
                     .fill("")

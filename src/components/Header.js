@@ -7,7 +7,7 @@ const Title = () => {
   return <p>Gud Fooood</p>
 }
 
-export const Header = () => {
+const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
 
@@ -26,11 +26,11 @@ export const Header = () => {
           <li>Instamart</li>
         </Link>
         <Link to="/cart">
-          <li className="px-2">Cart- {cartItems.length} items</li>
+          <li className="px-2" data-testid="cart">Cart- {cartItems.length} items</li>
         </Link>
 
       </ul>
-      <h1>{isOnline ? "✅" : "🔴"}</h1>
+      <h1 data-testid="online-status">{isOnline ? "✅" : "🔴"}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (
@@ -42,3 +42,5 @@ export const Header = () => {
 
   );
 };
+
+export default Header;

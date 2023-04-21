@@ -44,30 +44,32 @@ const Body = () => {
         <>
             <div className="body">
                 <input type="search" name="search" id="search" placeholder="Search..."
+                    data-testid="search-input"
                     value={searchTxt}
                     onChange={(e) => {
                         setSearchTxt(e.target.value)
                     }} />
-                <button onClick={() => {
-                    const data = filterFn(searchTxt, allRestaurants);
-                    (data?.length === 0)
-                        ?
-                        (
-                            document.getElementById("err").innerHTML = "<h1>No Restaurants Found. Search Again 😥</h1>",
-                            setFilteredRestaurants(data)
-                        )
-                        :
-                        (
-                            document.getElementById("err").innerHTML = "",
-                            setFilteredRestaurants(data)
-                        )
-                        ;
-                }}>Search</button>
+                <button 
+                    onClick={() => {
+                        const data = filterFn(searchTxt, allRestaurants);
+                        (data?.length === 0)
+                            ?
+                            (
+                                document.getElementById("err").innerHTML = "<h1>No Restaurants Found. Search Again 😥</h1>",
+                                setFilteredRestaurants(data)
+                            )
+                            :
+                            (
+                                document.getElementById("err").innerHTML = "",
+                                setFilteredRestaurants(data)
+                            )
+                            ;
+                    }}  data-testid="search-btn">Search</button>
 
                 <span id="err"></span>
             </div>
 
-            <div className="container card-parent" id="card-parent">
+            <div className="container card-parent" data-testid="res-list" id="card-parent">
                 {
                     filteredRestaurants?.map((restaurant) => {
                         return <Link to={"/restaurant/" + restaurant?.data?.id} key={restaurant?.data?.id}>

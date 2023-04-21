@@ -49,7 +49,7 @@ const RestaurantMenu = () => {
 {/* cards[0].card.card.info.cuisines */}
             <div className="p-5">
                 <h1>Menu</h1>
-                <ul>
+                <ul data-testid="menu">
                     {Object.values(restaurant?.cards[0]?.card?.card?.info?.labels).map((item) => (
                         < li key={item.title} >
                             {item.title} - {" "}
