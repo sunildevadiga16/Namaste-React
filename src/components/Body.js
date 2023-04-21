@@ -51,7 +51,7 @@ const Body = () => {
                     }} />
                 <button 
                     onClick={() => {
-                        const data = filterFn(searchTxt, allRestaurants);
+                        const data = filterData(searchTxt, allRestaurants);
                         (data?.length === 0)
                             ?
                             (
